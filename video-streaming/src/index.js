@@ -36,7 +36,7 @@ function sendViewedMessage(messageChannel, id) {
     console.log(`Publishing message on "viewed" exchange.`);
         
     const msg = {
-            msg: `viewed-${id}`
+            id: id
         };
     const jsonMsg = JSON.stringify(msg);
     messageChannel.publish("viewed", "", Buffer.from(jsonMsg)); // Publish message to the "viewed" exchange.
