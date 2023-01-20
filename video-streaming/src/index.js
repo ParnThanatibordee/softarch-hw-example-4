@@ -46,7 +46,15 @@ function sendViewedMessage(messageChannel, videoPath) {
 function setupHandlers(app, messageChannel) {
     app.get("/video", (req, res) => { // Route for streaming video.
 
-        const videoPath = "./videos/SampleVideo_1280x720_1mb.mp4";
+        // get query id
+        const id = req.query.id;
+
+        // read file name in /videos directory
+        const videos = fs.readdirSync('./videos/')
+        
+        // video path
+        const videoPath = `./videos/${videos[id-1]}`;
+
         fs.stat(videoPath, (err, stats) => {
             if (err) {
                 console.error("An error occurred ");
